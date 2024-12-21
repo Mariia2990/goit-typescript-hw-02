@@ -7,18 +7,19 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn'
 import Loader from './components/Loader/Loader'
 import { fetchImages } from './components/api';
 import './App.css'
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import {UnsplashImage} from './types/types'
 
 const App = () => {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const lastImageRef = useRef(null);
+  const [images, setImages] = useState<UnsplashImage[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string|null>(null);
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<UnsplashImage|null>(null);
+  const lastImageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -54,7 +55,7 @@ const App = () => {
   }, [query, page]);
 
  const uniqueImages = useMemo(() => {
-  const seen = {}; 
+  const seen:Record<string,boolean> = {}; 
   return images.filter((image) => {
     if (seen[image.id]) {
       return false; 
@@ -65,7 +66,7 @@ const App = () => {
 }, [images]);
 
 
-  const handleSearchSubmit = (newQuery) => {
+  const handleSearchSubmit = (newQuery:string) => {
     setQuery(newQuery);
     setPage(1);
     setImages([]);
@@ -77,7 +78,7 @@ const App = () => {
      setPage((prevPage) => prevPage + 1);
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: UnsplashImage) => {
     setSelectedImage(image);
     setIsModalOpen(true);
   };
