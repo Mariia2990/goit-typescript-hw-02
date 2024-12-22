@@ -1,14 +1,20 @@
 import { InfinitySpin } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
-const Loader: React.FC = () => {
+interface LoaderProps {
+  width?: string;
+  color?: string;
+}
+
+const Loader: React.FC<LoaderProps> = ({
+  width = "200",
+  color = "blue",
+}) => {
   return (
-    <div className={css.loader}>
+    <div className={css.loader} role="status" aria-live="polite">
       <InfinitySpin 
-        visible={true} 
-        width={200}
-        color="blue" 
-        ariaLabel="infinity-spin-loading" 
+        width={width} 
+        color={color} 
       />
     </div>
   );
