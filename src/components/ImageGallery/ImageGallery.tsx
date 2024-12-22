@@ -6,7 +6,7 @@ import React, { RefObject } from 'react';
 interface ImageGalleryProps {
   images: UnsplashImage[]; 
   onImageClick: (image: UnsplashImage) => void; 
-  lastImageRef?: RefObject<HTMLLIElement>; 
+  lastImageRef?: RefObject<HTMLLIElement | null>; 
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, onImageClick, lastImageRef }) => {

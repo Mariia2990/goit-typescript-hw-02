@@ -19,7 +19,7 @@ const App = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<UnsplashImage|null>(null);
-  const lastImageRef = useRef<HTMLDivElement | null>(null);
+  const lastImageRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -117,8 +117,8 @@ return (
         <ImageModal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
-          largeImageURL={selectedImage.urls.regular} 
-          alt={selectedImage.alt_description}
+          largeImageURL={selectedImage.urls.regular || ''} 
+          alt={selectedImage?.alt_description || 'No description available'} 
         />
       )}
     </>
