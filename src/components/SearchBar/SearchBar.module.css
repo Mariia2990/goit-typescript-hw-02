@@ -18,14 +18,14 @@
 }
 
 .searchInput{
- width: 360px;
+    width: 200px;
     height: 35px;
     border: 1px solid aqua;
     padding-left: 20px;
     padding-top: 8px;
     border-radius: 8px;
     transition: border-color .25s cubic-bezier(.4,0,.2,1);
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: .04em;
@@ -51,4 +51,16 @@ background: none;
 
 .iconSearch{
     pointer-events: none;
+}
+
+
+@media screen and (min-width: 768px){
+    .searchInput{
+width: 360px;
+height: 45px;
+font-size: 16px;
+}
+.buttonSearch {
+    top: 10px;
+}
 }
